@@ -505,7 +505,6 @@ const SortingLogic = () => {
     const handleSpeedUp = () => {
         setWaitTime(waitTimeArr[waitTimeIndex - 1]);
         setWaitTimeIndex(waitTimeIndex - 1);
-        console.log(waitTimeIndex-1);
         setScaleEffectUp(true);
         setTimeout(() => {
             setScaleEffectUp(false);
@@ -514,7 +513,6 @@ const SortingLogic = () => {
     const handleSpeedDown = () => {
         setWaitTime(waitTimeArr[waitTimeIndex + 1]);
         setWaitTimeIndex(waitTimeIndex + 1);
-        console.log(waitTimeIndex+1);
         setScaleEffectDown(true);
         setTimeout(() => {
             setScaleEffectDown(false);
