@@ -1,23 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import sortInfo from '../../data/sortingInfo'
+import sortInfo from "../../data/sortingInfo";
 
 const InfoComponent = () => {
     const { sortingTechnique } = useSelector((state) => state.choice);
     const [sortData, setSortData] = useState(null); // Initialize with null or {}
 
     useEffect(() => {
-        if (sortingTechnique === "Selection Sort") setSortData(sortInfo[0]);
-        else if (sortingTechnique === "Bubble Sort") setSortData(sortInfo[1]);
-        else if (sortingTechnique === "Insertion Sort") setSortData(sortInfo[2]);
-        // Add more conditions as needed for other sorting techniques
-        // Consider adding a default case or handling unexpected values
-    }, [sortingTechnique, sortInfo]); // Include sortInfo in dependencies if it changes
+        const data = sortInfo.find((val) => val.algoName === sortingTechnique);
+        setSortData(data);
+    }, [sortingTechnique]); // Include sortInfo in dependencies if it changes
 
     if (!sortData) return null; // Add a loading state if necessary
 
     return (
-        <div className="w-10/12 mx-auto my-4">
+        <div className="w-10/12 mx-auto mb-4 font-nunito">
             <div className="text-2xl font-semibold my-4">
                 {sortData.algoName}
             </div>
@@ -32,7 +29,9 @@ const InfoComponent = () => {
                         <div>{sortData.Process}</div>
                     </div>
                     <div className="flex flex-row gap-2 text-justify">
-                        <div className="font-semibold text-lg">Efficiency: </div>
+                        <div className="font-semibold text-lg">
+                            Efficiency:{" "}
+                        </div>
                         <div>{sortData.Efficiency}</div>
                     </div>
                     <div className="flex flex-row gap-2 text-justify">
